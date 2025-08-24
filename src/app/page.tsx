@@ -13,7 +13,7 @@ export default function Home() {
           priority
         />
         <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          Welcome to Dong Quoc Thanh's homepage
+          Welcome to Dong Quoc Thanh&apos;s homepage
         </ol>
 
       </main>
