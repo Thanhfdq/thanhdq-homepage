@@ -35,12 +35,6 @@ export default function Home() {
           Read My Blog
         </Link>
       </section>
-
-      {/* Footer */}
-      <footer className="text-sm text-muted-foreground text-center">
-        © {new Date().getFullYear()} Đồng Quốc Thành · Built with Next.js &
-        Tailwind
-      </footer>
     </main>
   );
 }
