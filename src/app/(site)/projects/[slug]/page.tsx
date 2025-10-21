@@ -1,53 +1,6 @@
 import Image from "next/image";
 import { notFound } from "next/navigation";
-
-const projects = [
-  {
-    slug: "task-manager",
-    title: "Task Manager App",
-    description:
-      "A productivity app built with React, Node.js, and MySQL to manage tasks efficiently.",
-    image: "/projects/task-manager.jpg",
-    tags: ["React", "Node.js", "MySQL"],
-    content: `
-This project is a full-stack **Task Manager App** designed to help users organize and track daily tasks.
-
-### 🔧 Tech Stack
-- Frontend: React + Tailwind
-- Backend: Node.js + Express
-- Database: MySQL
-
-### ✨ Features
-- User authentication
-- Task creation, editing, and completion
-- Project grouping and progress tracking
-
-### 🧠 Lessons Learned
-Building this project taught me about REST APIs, authentication, and efficient UI/UX with Tailwind.
-`,
-  },
-  {
-    slug: "ai-chatbot",
-    title: "AI Chatbot",
-    description:
-      "An interactive chatbot powered by the OpenAI API and Next.js.",
-    image: "/projects/ai-chatbot.jpg",
-    tags: ["Next.js", "OpenAI", "API"],
-    content: `
-This **AI Chatbot** project integrates the OpenAI API to create an interactive conversation experience.
-
-### ⚙️ Tech Stack
-- Frontend: Next.js 15 + Tailwind
-- API: OpenAI GPT model
-- Deployment: Vercel
-
-### 💡 Key Features
-- Streaming responses
-- Markdown rendering
-- Clean conversational UI
-`,
-  },
-];
+import { projects } from "@/lib/project";
 
 export default function ProjectDetailPage({
   params,
