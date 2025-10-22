@@ -1,71 +1,33 @@
-export const projects = [
-  {
-    title: "Task Management",
-    slug: "task-manager",
-    description:
-      "A productivity app built for military to manage tasks efficiently.",
-    image: "/taskapp-logo-panel.png",
-    tags: ["Indie", "React", "Tauri", "ExpressJS", "MySQL"],
-    content: `
-    This project is a full-stack **Task Manager App** designed to help users organize and track daily tasks.
+import fs from "fs";
+import path from "path";
+import { getMarkdownContent } from "./markdown";
 
-### 🔧 Tech Stack
-- Frontend: React + Tailwind
-- Backend: Node.js + Express
-- Database: MySQL
+const projectsDir = path.join(process.cwd(), "src/content/projects");
 
-### ✨ Features
-- User authentication
-- Task creation, editing, and completion
-- Project grouping and progress tracking
+/**
+ * Get all projects (metadata only)
+ */
+export async function getAllProjects() {
+  const files = fs.readdirSync(projectsDir);
 
-### 🧠 Lessons Learned
-Building this project taught me about REST APIs, authentication, and efficient UI/UX with Tailwind.`,
-  },
-  {
-    title: "Bachhoa",
-    slug: "bachhoa",
-    description:
-      "A system use to manage and operate a mini market in Administration, Checkout and Inventory.",
-    image: "/bachhoa-logo-panel.png",
-    tags: ["Teamwork", "Spring Boot", "Angular JS", "MySQL"],
-    content: `
-    This project is a full-stack **Task Manager App** designed to help users organize and track daily tasks.
+  const projects = await Promise.all(
+    files.map(async (file) => {
+      const filePath = path.join(projectsDir, file);
+      const { metadata } = await getMarkdownContent(filePath);
+      const slug = file.replace(/\.md$/, "");
+      return { slug, ...metadata };
+    })
+  );
 
-### 🔧 Tech Stack
-- Frontend: React + Tailwind
-- Backend: Node.js + Express
-- Database: MySQL
+  // Sort newest first or alphabetically
+  return projects.sort((a, b) => (b.year ?? 0) - (a.year ?? 0));
+}
 
-### ✨ Features
-- User authentication
-- Task creation, editing, and completion
-- Project grouping and progress tracking
-
-### 🧠 Lessons Learned
-Building this project taught me about REST APIs, authentication, and efficient UI/UX with Tailwind.`,
-  },
-  {
-    title: "Cinesys",
-    slug: "cinesys",
-    description:
-      "A cinema management system build with Java Swing for Windows.",
-    image: "/cinesys-logo-panel.png",
-    tags: ["Teamwork", "Java Swing", "SQL Server"],
-    content: `
-    This project is a full-stack **Task Manager App** designed to help users organize and track daily tasks.
-
-### 🔧 Tech Stack
-- Frontend: React + Tailwind
-- Backend: Node.js + Express
-- Database: MySQL
-
-### ✨ Features
-- User authentication
-- Task creation, editing, and completion
-- Project grouping and progress tracking
-
-### 🧠 Lessons Learned
-Building this project taught me about REST APIs, authentication, and efficient UI/UX with Tailwind.`,
-  },
-];
+/**
+ * Get a single project by slug
+ */
+export async function getProjectBySlug(slug: string) {
+  const filePath = path.join(projectsDir, `${slug}.md`);
+  if (!fs.existsSync(filePath)) return null;
+  return await getMarkdownContent(filePath);
+}
