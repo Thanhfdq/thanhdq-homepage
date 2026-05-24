@@ -74,20 +74,20 @@ export default function Home() {
           <FaXTwitter /> @dongquocthanh
         </Link>
         <Link
-          href="https://www.linkedin.com/in/thanh-dong-217625266/"
+          href="https://www.linkedin.com/in/quoc-thanh-dong-217625266/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline flex items-center gap-2"
         >
-          <FaLinkedin /> @ThanhDong
+          <FaLinkedin /> @quocthanhdong
         </Link>
         <Link
-          href="https://www.instagram.com/thanhquocdong/"
+          href="https://www.instagram.com/thanhdqit/"
           target="_blank"
           rel="noopener noreferrer"
           className="hover:underline flex items-center gap-2"
         >
-          <FaInstagram /> @thanhquocdong
+          <FaInstagram /> @thanhdqit
         </Link>
         <p className="flex items-center gap-2">
           <FaEnvelope /> thanhdqit26@gmail.com
